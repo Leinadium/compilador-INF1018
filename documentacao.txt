@@ -1,0 +1,21 @@
+inicio:
+	pushq	%rbp
+	movq	%rsp, %rbp
+	subq	%16 , %rsp
+
+att:
+	movl	_v1, %eax
+	___	_v2, %eax
+	movl,	%eax,_des
+
+if:
+	cmpl	$0,  _v1
+	jne	_____
+
+ret:
+	movl	-4(%rbp), %eax
+	addq	%16, %rsp
+	leave
+	ret
+
+
