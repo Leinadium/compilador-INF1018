@@ -6,20 +6,20 @@ Foi atribuida cada linha em linb certas instrucoes em assembly.
 
 p1 = %edi / p2 = %esi / v1..v4 = -16(%rbp) .. -4(%rbp)
 
-Atribuicao: var1 = var2 opr var 3
-	mov  var2, %eax
-	opr  var3, %eax
-	mov  %eax, var1
+Atribuicao: var1 = var2 opr var 3    
+	mov  var2, %eax    
+	opr  var3, %eax    
+	mov  %eax, var1    
 
-Desvio: if var1 n
-	cmp  $0, var1
-	je  _ _ _ _
+Desvio: if var1 n    
+	cmp  $0, var1    
+	je  _ _ _ _    
 
-Retorno:
-	mov  -16(%rbp) %eax
-	addq $16, %rsp
-	leave
-	ret
+Retorno:    
+	mov  -16(%rbp) %eax    
+	addq $16, %rsp    
+	leave    
+	ret    
 
 ## Procedimentos
 
