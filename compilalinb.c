@@ -32,8 +32,14 @@ void dump(int *l, int tamanho)
     return;
 }
 
+void libera_assembly(Assembly *lista, int q)
+{
+    int i;
+    for (i=0;i<q;i++) free(lista[i].lista);
+    return;
+}
 
-int *junta_binario(Assembly *lista_binario, int q, int *tamanho_final)
+int* junta_binario(Assembly *lista_binario, int q, int *tamanho_final)
 {
     int* lista_final;
     int tamanho_total = 0;
@@ -45,6 +51,8 @@ int *junta_binario(Assembly *lista_binario, int q, int *tamanho_final)
     }
 
     lista_final = (int*)malloc(sizeof(int)*tamanho_total);
+    // VERIFICAR ERRO
+
     for (i=0; i<q; i++)
     {
         for (j=0;j<lista_binario[i].q;j++)
@@ -143,6 +151,7 @@ char *monta_inicio(int *q)
         subq    $16, %rsp
     */
     char *b = (char*)malloc(sizeof(char)*8);
+    // VERIFICAR ERRO
     *q = 8;
     b[0] = 0x55;
     b[1] = 0x48;
@@ -165,6 +174,7 @@ char *monta_retorno(int *q)
     */
    *q = 9;
     char *b = (char*)malloc(sizeof(char)*9);
+    // VERIFICAR ERRO
     b[0] = 0x8b;
     b[1] = 0x45;
     b[2] = 0xf0;
@@ -196,6 +206,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 5;
             b = (char*)malloc(sizeof(char)*5);
+            // VERIFICAR ERRO
             b[0] = 0xb8;
             b[1] = (char) var->n;
             b[2] = (char) var->n >> 8;
@@ -206,6 +217,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 2;
             b = (char*)malloc(sizeof(char)*2);
+            // VERIFICAR ERRO
             b[0] = 0x89;
             b[1] = (var->n == 1) ? 0xf8 : 0xf0; 
         }
@@ -213,6 +225,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 3;
             b = (char*)malloc(sizeof(char)*3);
+            // VERIFICAR ERRO
             b[0] = 0x8b;
             b[1] = 0x45;
             b[2] = 0xf0 + 4 * ((char) var->n - 1);
@@ -225,6 +238,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 2;
             b = (char*)malloc(sizeof(char)*2);
+            // VERIFICAR ERRO
             b[0] = 0x89;
             b[1] = (var->n == 1) ? 0xc7 : 0xc6;
         }
@@ -232,6 +246,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 3;
             b = (char*)malloc(sizeof(char)*3);
+            // VERIFICAR ERRO
             b[0] = 0x89;
             b[1] = 0x45;
             b[2] = 0xf0 + 4*(((char)var->n)-1);
@@ -246,6 +261,7 @@ char *monta_binario(char tipo, Var *var, int *q)
             {
                 *q = 3;
                 b = (char*)malloc(sizeof(char)*3);
+                // VERIFICAR ERRO
                 b[0] = 0x83;
                 b[1] = (tipo == 'a') ? 0xc0 : 0xe8;
                 b[2] = (char) var->n;
@@ -254,6 +270,7 @@ char *monta_binario(char tipo, Var *var, int *q)
             {
                 *q = 5;
                 b = (char*)malloc(sizeof(char)*5);
+                // VERIFICAR ERRO
                 b[0] = (tipo == 'a') ? 0x05 : 0x2d;
                 b[1] = (char) var->n;
                 b[2] = (char) *(&(var->n) + 1);
@@ -266,6 +283,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 2;
             b = (char*)malloc(sizeof(char)*2);
+            // VERIFICAR ERRO
             b[0] = (tipo == 'a') ? 0x01: 0x29;
             b[1] = (var->n == 1) ? 0xf8 : 0xf0;
         }
@@ -273,6 +291,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 3;
             b = (char*)malloc(sizeof(char)*3);
+            // VERIFICAR ERRO
             b[0] = (tipo == 'a') ? 0x03 : 0x2b;
             b[1] = 0x45;
             b[2] = 0xf0 + 4 * ((char) var->n - 1);
@@ -286,6 +305,7 @@ char *monta_binario(char tipo, Var *var, int *q)
             {
                 *q = 3;
                 b = (char*)malloc(sizeof(char)*3);
+                // VERIFICAR ERRO
                 b[0] = 0x6b;
                 b[1] = 0xc0;
                 b[2] = (char) var->n;
@@ -294,6 +314,7 @@ char *monta_binario(char tipo, Var *var, int *q)
             {
                 *q = 6;
                 b = (char*)malloc(sizeof(char)*6);
+                // VERIFICAR ERRO
                 b[0] = 0x69;
                 b[1] = 0xc0;
                 b[2] = (char) var->n;
@@ -307,6 +328,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 3;
             b = (char*)malloc(sizeof(char)*3);
+            // VERIFICAR ERRO
             b[0] = 0x0f;
             b[1] = 0xaf;
             b[2] = (var->n == 1) ? 0xc7 : 0xc6;
@@ -315,6 +337,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 4;
             b = (char*)malloc(sizeof(char)*4);
+            // VERIFICAR ERRO
             b[0] = 0x0f;
             b[1] = 0xaf;
             b[2] = 0x45;
@@ -327,6 +350,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 3;
             b = (char*)malloc(sizeof(char)*3);
+            // VERIFICAR ERRO
             b[0] = 0x83;
             b[1] = (var->n == 1) ? 0xff : 0xfe;
             b[2] = 0x00;
@@ -335,6 +359,7 @@ char *monta_binario(char tipo, Var *var, int *q)
         {
             *q = 4;
             b = (char*)malloc(sizeof(char)*4);
+            // VERIFICAR ERRO
             b[0] = 0x83;
             b[1] = 0x7d;
             b[2] = 0xf0 + 4 * ((char) var->n - 1);
@@ -373,7 +398,9 @@ int* monta_assembly(Linha *linhas, int q_linhas, int q_linhas_assembly, int *tam
 
     for (i=0; i<q_linhas;i++) {if (linhas[i].tipo == 'd') q_desvios++;}
     lista_desvios_linhas = (int *)malloc(sizeof(int)*q_desvios);
+    // VERIFICAR ERRO
     lista_desvios_assembly = (int *)malloc(sizeof(int)*q_desvios);
+    // VERIFICAR ERRO
 
     for (i=0; i<q_linhas; i++)
     {
@@ -425,7 +452,14 @@ int* monta_assembly(Linha *linhas, int q_linhas, int q_linhas_assembly, int *tam
                     lista_desvios_assembly[i]);
     }
 
+    free(lista_desvios_assembly);
+    free(lista_desvios_linhas);
+
     resposta = junta_binario(linhas_assembly, j, tamanho_final);
+    
+    libera_assembly(linhas_assembly, q_linhas_assembly);
+    free(linhas_assembly);
+
     return resposta;
 }
 
@@ -494,6 +528,12 @@ int* CompilaLinB (FILE *f)
     lista_final = monta_assembly(linhas, q_linhas, q_linhas_assembly, &tamanho_final);
     dump(lista_final, tamanho_final);
     return lista_final;
+}
+
+void LiberaFuncao(void *p)
+{
+    free(p);
+    return;
 }
 
 /*
