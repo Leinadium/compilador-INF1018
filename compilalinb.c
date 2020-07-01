@@ -351,10 +351,14 @@ char *monta_binario(char tipo, Var *var, int *q)
                 verificar_erro(b);
 
                 b[0] = (tipo == 'a') ? 0x05 : 0x2d; // mesma pequena diferenca observada
-                b[1] = (char) var->n;
-                b[2] = (char) *(&(var->n) + 1);
-                b[3] = (char) *(&(var->n) + 2);
-                b[4] = (char) *(&(var->n) + 3);
+                // b[1] = (char) var->n;
+                // b[2] = (char) *(&(var->n) + 1);
+                // b[3] = (char) *(&(var->n) + 2);
+                // b[4] = (char) *(&(var->n) + 3);
+                b[1] = (char) (var->n) & 0xff;
+                b[2] = (char) (var->n >> 8) & 0xff;
+                b[3] = (char) (var->n >> 16) & 0xff;
+                b[4] = (char) (var->n >> 24) & 0xff;
             }
             
         }
@@ -400,10 +404,14 @@ char *monta_binario(char tipo, Var *var, int *q)
 
                 b[0] = 0x69;
                 b[1] = 0xc0;
-                b[2] = (char) var->n;
-                b[3] = (char) *(&(var->n) + 1);
-                b[4] = (char) *(&(var->n) + 2);
-                b[5] = (char) *(&(var->n) + 3);
+                //b[2] = (char) var->n;
+                //b[3] = (char) *(&(var->n) + 1);
+                //b[4] = (char) *(&(var->n) + 2);
+                //b[5] = (char) *(&(var->n) + 3);
+                b[2] = (char) (var->n) & 0xff;
+                b[3] = (char) (var->n >> 8) & 0xff;
+                b[4] = (char) (var->n >> 16) & 0xff;
+                b[5] = (char) (var->n >> 24) & 0xff;
             }
          
         }

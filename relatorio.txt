@@ -36,3 +36,23 @@ Foram utilizados 3 tipos diferentes de estruturas, 10 funcoes auxiliares, totali
 Parte do historico do progresso foi perdido pela troca de sistema operacional, pois estava utilizando o windows,
 mas depois decidi trocar para utilizar somente o ubuntu a partir de um dual boot. Anteriormente estava conectado
 em um laptop antigo rodando linux a partir de uma conexao ssh, editando um programa em um disco rigido externo.
+
+## Testes
+
+Para os testes, foram utilizados todos os exemplos fornecidos no site.
+O único que inicialmente não funcionou foi o programa do fatorial, pois havia 
+um erro na contagem de endereços para o desvio.
+Porém, foi testado um código de autoria própria, esse sendo a funcao ?, semelhante ao fatorial,
+mas que retorna a soma de 0 até o numero:
+
+Código em LinB:      
+	v2 = $0 + $0      
+	v1 = $0 + $0      
+	v1 = v1 + p1      
+	p1 = p1 - $1       
+	if p1 7      
+	if v2 3      
+	ret   
+   
+Código gerado:
+|55|48|89|e5|48|83|ec|10|b8|0|0|0|0|83|c0|0|89|45|f4|b8|0|0|0|0|83|c0|0|89|45|f0|8b|45|f0|1|f8|89|45|f0|89|f8|83|e8|1|89|c7|83|ff|0|75|4|83|7d|f4|0|75|e6|8b|45|f0|48|83|c4|10|c9|c3|

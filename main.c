@@ -6,7 +6,8 @@ int main()
 	FILE *f = fopen("cod.linb", "r");
 
 	funcp funcao = CompilaLinB(f);
-	int i = (*funcao)(7);
+	int i = (*funcao)(6);
+	LiberaFuncao(funcao);
 
 	printf("\nA resposta eh %d\n", i);
 
